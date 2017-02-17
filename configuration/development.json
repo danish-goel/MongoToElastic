@@ -1,0 +1,31 @@
+{
+    "urls": {
+        "desktop": "http://www.livehindustan.com",
+        "mobile": ""
+    },
+    "server": {
+        "port": 8000,
+        "cache": true
+    },
+    "locals": {
+        "title": "Live Hindustan"
+    },
+    "debug": {
+        "DEBUG": "htapp,htapp:*"
+    },
+    "mongo": {
+        "url": "",
+        "username": "",
+        "password": ""
+    },
+    "elastic": {
+        "url": "",
+        "hosts": "",
+        "region": "",
+        "accessKey": "",
+        "secretKey": ""
+    },
+    "elasticindex": {
+        "article": "article"
+    }
+}
