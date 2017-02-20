@@ -2,12 +2,12 @@
 'use strict';
 var elasticsearch = require('elasticsearch');
 var mongodb = require('mongodb');
-var config = require('./configuration');
+var configuration = require('./configuration');
 //We need to work with "MongoClient" interface in order to connect to a mongodb server.
 var MongoClient = mongodb.MongoClient;
 
 // Connection URL. This is where your mongodb server is running.
-var url = 'mongodb://' + config.mongo.username + ':' + config.mongo.password + '@' + config.mongo.url;
+var url = 'mongodb://' + configuration.mongo.username + ':' + configuration.mongo.password + '@' + configuration.mongo.url;
 
 var elasticsearch = require('elasticsearch');
 var elasticurl = '10.139.1.22:9200'
@@ -16,12 +16,12 @@ var elasticurl = '10.139.1.22:9200'
 // });
 
 var client = new elasticsearch.Client({
-    hosts: config.elastic.hosts,
+    hosts: configuration.elastic.hosts,
     connectionClass: require('http-aws-es'),
     amazonES: {
-        region: config.elastic.region,
-        accessKey: config.elastic.accessKey,
-        secretKey: config.elastic.secretKey
+        region: configuration.elastic.region,
+        accessKey: configuration.elastic.accessKey,
+        secretKey: configuration.elastic.secretKey
     }
 });
 
@@ -101,7 +101,7 @@ function sendBulkQuery(documents, client, limit) {
     for (let index = 0; index < nextDocs.length; index++) {
         let doc = nextDocs[index];
         var type = doc.type;
-        var config = { index: { _index: config.elasticindex.article, _type: type } };
+        var config = { index: { _index: configuration.elasticindex.article, _type: type } };
         config['index']['_id'] = doc.nid;
         delete doc._id;
         bulkQueryBody.push(config)
